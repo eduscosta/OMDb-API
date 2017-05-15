@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,13 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean networkOk;
 
-    TextView output;
+    TextView title, year, plot, genre, actors, awards,runtime;
 
     EditText search;
 
     String s;
-
-    WebView mWebView;
 
     DataItem dataItems = new DataItem();
 
@@ -39,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             dataItems = (DataItem) intent
                     .getParcelableExtra(MyService.MY_SERVICE_PAYLOAD);
+
             if (dataItems.getTitle() != null) {
-                output.append("\n"+ dataItems.getTitle() + "\n");
-                output.append("Year: " + dataItems.getYear() + "   Runtime: " + dataItems.getRuntime() +"\n");
-                output.append(dataItems.getPlot() + "\n");
-                output.append("Actors: ".toUpperCase() +dataItems.getActors()+ "\n");
-                output.append("Genre:  ".toUpperCase() +dataItems.getGenre()+ "\n");
-                output.append("Awards: ".toUpperCase()  +dataItems.getAwards()+ "\n");
-            } else {
-                output.append("Not found");
+                title.setText(dataItems.getTitle());
+                year.setText(dataItems.getYear());
+                runtime.setText(dataItems.getRuntime());
+                plot.setText(dataItems.getPlot());
+                actors.setText(dataItems.getActors());
+                genre.setText(dataItems.getGenre());
+                awards.setText(dataItems.getAwards());
             }
         }
     };
@@ -57,7 +54,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        output = (TextView) findViewById(R.id.output);
+        title = (TextView) findViewById(R.id.title);
+        year = (TextView) findViewById(R.id.year);
+        plot = (TextView) findViewById(R.id.plot);
+        runtime = (TextView) findViewById(R.id.runtime);
+        genre = (TextView) findViewById(R.id.genre);
+        actors = (TextView) findViewById(R.id.actors);
+        awards = (TextView) findViewById(R.id.awards);
+
+
         search = (EditText) findViewById(R.id.edit_search);
 
         LocalBroadcastManager.getInstance(getApplicationContext())
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void runClickHandler(View view) {
-        output.setText("");
+
         s = search.getText().toString().replace(" ", "+");
         String URL = "";
         if (networkOk) {
@@ -92,8 +97,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void clearClickHandler(View view) {
-        output.setText("");
-    }
 }
 
