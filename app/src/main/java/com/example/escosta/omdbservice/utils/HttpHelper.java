@@ -1,4 +1,4 @@
-package com.example.escosta.moviesservice.utils;
+package com.example.escosta.omdbservice.utils;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

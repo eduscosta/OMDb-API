@@ -1,4 +1,4 @@
-package com.example.escosta.moviesservice.model;
+package com.example.escosta.omdbservice.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

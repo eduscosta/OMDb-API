@@ -1,4 +1,4 @@
-package com.example.escosta.moviesservice.model;
+package com.example.escosta.omdbservice.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -37,6 +37,7 @@ public class DataItem implements Parcelable {
     private String production;
     private String website;
     private String response;
+
 
     public String getTitle() {
         return title;
@@ -304,7 +305,7 @@ public class DataItem implements Parcelable {
         this.response = in.readString();
     }
 
-    public static final Parcelable.Creator<DataItem> CREATOR = new Parcelable.Creator<DataItem>() {
+    public static final Creator<DataItem> CREATOR = new Creator<DataItem>() {
         @Override
         public DataItem createFromParcel(Parcel source) {
             return new DataItem(source);

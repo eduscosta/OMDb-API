@@ -1,4 +1,4 @@
-package com.example.escosta.moviesservice.utils;
+package com.example.escosta.omdbservice.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

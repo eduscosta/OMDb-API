@@ -1,18 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.escosta.moviesservice.MainActivity">
-
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="movie"
+            type="com.example.escosta.omdbservice.Movie"></variable>
+    </data>
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        tools:context="com.example.escosta.omdbservice.MainActivity"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,13 +35,16 @@
                 android:onClick="runClickHandler"
                 android:text="Search" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/primary_dark"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="@{movie.title}"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,25 +52,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:text="Year: "
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/secondary_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             <TextView
                 android:id="@+id/year"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:layout_marginRight="30dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textColor="@color/accent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="@{movie.year}" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Runtime: "
                 android:layout_weight="1"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/secondary_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             <TextView
                 android:id="@+id/runtime"
@@ -74,21 +77,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/colorPrimary"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="@{movie.runtime}" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
+
+        <TextView
                 android:id="@+id/plot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:text="@{movie.plot}"
                 android:layout_margin="10dp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/accent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-        </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,16 +102,18 @@
                 android:text="Actors: "
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/secondary_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             <TextView
                 android:id="@+id/actors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/colorPrimary"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textColor="@color/accent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="@{movie.actors}"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,16 +125,18 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="Genre: "
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/secondary_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             <TextView
                 android:id="@+id/genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/colorPrimary"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textColor="@color/accent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="@{movie.genre}"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,17 +146,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Awards: "
-                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/secondary_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             <TextView
                 android:id="@+id/awards"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/colorPrimary"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textColor="@color/accent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="@{movie.awards}" />
         </LinearLayout>
-
-
     </LinearLayout>
-</RelativeLayout>
+</layout>

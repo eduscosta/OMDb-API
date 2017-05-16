@@ -1,4 +1,4 @@
-package com.example.escosta.moviesservice.services;
+package com.example.escosta.omdbservice.services;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.example.escosta.moviesservice.model.DataItem;
-import com.example.escosta.moviesservice.utils.HttpHelper;
+import com.example.escosta.omdbservice.model.DataItem;
+import com.example.escosta.omdbservice.utils.HttpHelper;
 
 import java.io.IOException;
 

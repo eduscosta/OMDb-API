@@ -1,29 +1,34 @@
-package com.example.escosta.moviesservice;
+package com.example.escosta.omdbservice;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.escosta.moviesservice.model.DataItem;
-import com.example.escosta.moviesservice.services.MyService;
-import com.example.escosta.moviesservice.utils.NetworkHelper;
+import com.example.escosta.omdbservice.databinding.ActivityMainBinding;
+import com.example.escosta.omdbservice.model.DataItem;
+import com.example.escosta.omdbservice.services.MyService;
+import com.example.escosta.omdbservice.utils.NetworkHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private static final String TAG = "EDUARDO";
     private static String JSON_URL = "http://www.omdbapi.com/?t=";
 
     private boolean networkOk;
 
-    TextView title, year, plot, genre, actors, awards,runtime;
+    ActivityMainBinding binding;
+
+    String title, year, plot, genre, actors, awards,runtime;
 
     EditText search;
 
@@ -37,31 +42,25 @@ public class MainActivity extends AppCompatActivity {
             dataItems = (DataItem) intent
                     .getParcelableExtra(MyService.MY_SERVICE_PAYLOAD);
 
-            if (dataItems.getTitle() != null) {
-                title.setText(dataItems.getTitle());
-                year.setText(dataItems.getYear());
-                runtime.setText(dataItems.getRuntime());
-                plot.setText(dataItems.getPlot());
-                actors.setText(dataItems.getActors());
-                genre.setText(dataItems.getGenre());
-                awards.setText(dataItems.getAwards());
-            }
+            title = (dataItems.getTitle());
+            year = (dataItems.getYear());
+            runtime = (dataItems.getRuntime());
+            plot = (dataItems.getPlot());
+            actors = (dataItems.getActors());
+            genre = (dataItems.getGenre());
+            awards = (dataItems.getAwards());
+
+            Movie movie = new Movie(title, year, runtime, genre, actors, plot, awards);
+
+            binding.setMovie(movie);
         }
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        title = (TextView) findViewById(R.id.title);
-        year = (TextView) findViewById(R.id.year);
-        plot = (TextView) findViewById(R.id.plot);
-        runtime = (TextView) findViewById(R.id.runtime);
-        genre = (TextView) findViewById(R.id.genre);
-        actors = (TextView) findViewById(R.id.actors);
-        awards = (TextView) findViewById(R.id.awards);
-
+//        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         search = (EditText) findViewById(R.id.edit_search);
 
@@ -71,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
         networkOk = NetworkHelper.hasNetworkAccess(this);
 
-    }
 
+//        Movie movie = new Movie("Eduardo", "1996", "20", "fiction", "Eduardo Costa", "Intern at IBM", "Best Intern");
+
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -98,4 +99,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-

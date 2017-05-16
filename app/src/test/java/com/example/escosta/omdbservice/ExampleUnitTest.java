@@ -1,4 +1,4 @@
-package com.example.escosta.moviesservice;
+package com.example.escosta.omdbservice;
 
 import org.junit.Test;
 
