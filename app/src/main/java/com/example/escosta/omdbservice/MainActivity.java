@@ -21,7 +21,6 @@ import com.example.escosta.omdbservice.utils.NetworkHelper;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "EDUARDO";
     private static String JSON_URL = "http://www.omdbapi.com/?t=";
 
     private boolean networkOk;
@@ -69,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
                         new IntentFilter(MyService.MY_SERVICE_MESSAGE));
 
         networkOk = NetworkHelper.hasNetworkAccess(this);
-
-
-//        Movie movie = new Movie("Eduardo", "1996", "20", "fiction", "Eduardo Costa", "Intern at IBM", "Best Intern");
 
     }
     @Override
